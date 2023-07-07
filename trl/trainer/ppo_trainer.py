@@ -181,10 +181,10 @@ class PPOTrainer(BaseTrainer):
             raise ValueError(
                 f"tokenizer must be a PreTrainedTokenizerBase like a PreTrainedTokenizer or a PreTrainedTokenizerFast, got {type(tokenizer)}"
             )
-        if not isinstance(model, (SUPPORTED_ARCHITECTURES)):
-            raise ValueError(
-                f"model must be a PreTrainedModelWrapper, got {type(model)} - supported architectures are: {SUPPORTED_ARCHITECTURES}"
-            )
+        #if not isinstance(model, (SUPPORTED_ARCHITECTURES)):
+            #raise ValueError(
+            #    f"model must be a PreTrainedModelWrapper, got {type(model)} - supported architectures are: {SUPPORTED_ARCHITECTURES}"
+            #)
         # Step 1: Initialize Accelerator
         self.accelerator = Accelerator(
             log_with=config.log_with,
@@ -218,10 +218,11 @@ class PPOTrainer(BaseTrainer):
         elif self.is_peft_model:
             self.ref_model = None
         else:
-            raise ValueError(
-                f"ref_model must be a PreTrainedModelWrapper or `None`, got {type(ref_model)} - supported "
-                f"architectures are: {SUPPORTED_ARCHITECTURES} "
-            )
+            #raise ValueError(
+            #    f"ref_model must be a PreTrainedModelWrapper or `None`, got {type(ref_model)} - supported "
+            #    f"architectures are: {SUPPORTED_ARCHITECTURES} "
+            #)
+            self.ref_model = ref_model
 
         if not (isinstance(tokenizer, PreTrainedTokenizer) or isinstance(tokenizer, PreTrainedTokenizerFast)):
             raise ValueError(
